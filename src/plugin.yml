@@ -1,0 +1,15 @@
+main: net.danelegend.fatalhoes.FatalHoes
+name: FatalHoes
+version: 1.0
+author: Danelegend
+commands:
+  harvester:
+    description: Gives a player a harvester hoe
+  upgrade:
+    description: Upgrades a harvester hoe
+  cane:
+    description: displays stats information
+  tokens:
+    description: Displays tokens of the player
+  fatal:
+    description: Used as an admin command

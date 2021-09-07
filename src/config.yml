@@ -1,0 +1,62 @@
+# Options for harvester hoes
+harvester-hoe:
+  cane-price: 50
+  name: '&c&lHarvester Hoe'
+  lore:
+  - ''
+  - '&fUse this magical hoe to automatically collect'
+  - '&fSugarcane. Use &c/upgrade &fwhile holding to enchant'
+  glow: true
+  spawner-drops:
+   enabled: true
+  key-drops:
+   enabled: true
+   # Use {player} as a placeholder for the player name
+   # Type in the command to give the player a crate here 
+   key-command: 'give {player} crate'
+  cane-top-gui:
+   title: '&cCane Top Placements'
+  # Configurability for Enchants  
+  Autosell:
+   Base-Token-Cost: 50000 # Price for level 1
+   Max-Level: 1 # Max level for this enchant
+   Price-Multiplier: 0.01
+   # How much each increasing level should cost
+   # Cost Example
+   # Level 1 = basePrice * 1.00
+   # Level 2 = basePrice * 1.01
+   # Level 3 = basePrice * 1.02
+   # ...
+  AutosellBooster:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+  Shockwave:
+   Base-Token-Cost: 50000
+   Max-Level: 1
+   Price-Multiplier: 0
+  DropBooster:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+  TokenBooster:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+  SpawnerLooting:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+   # Probability of looting spawner
+   # Chance Calculated by enchantLevel/Probability
+   Probability: 10000
+  KeyLooting:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+   Probability: 10000
+  Haste:
+   Base-Token-Cost: 10000
+   Max-Level: 100
+   Price-Multiplier: 0.01
+   
