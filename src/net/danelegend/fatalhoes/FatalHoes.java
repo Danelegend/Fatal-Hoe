@@ -58,6 +58,7 @@ public class FatalHoes extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(tokMan, this);
 		Bukkit.getPluginManager().registerEvents(canMan, this);
 		
+		Bukkit.getPluginCommand("fatal").setExecutor(new FatalCmd(this));
 		
 	}
 	
@@ -118,7 +119,7 @@ public class FatalHoes extends JavaPlugin {
 	}
 	
 	public Economy getEco() {
-		return this.econ;
+		return econ;
 	}
 	
 	public HoeManager getHoeManager() {

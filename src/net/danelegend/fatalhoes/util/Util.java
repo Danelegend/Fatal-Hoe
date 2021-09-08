@@ -84,4 +84,8 @@ public class Util {
 		return msg;
 	}
 	
+	public static String prefix() {
+		return "&a[FatalHoes]: ";
+	}
+	
 }
