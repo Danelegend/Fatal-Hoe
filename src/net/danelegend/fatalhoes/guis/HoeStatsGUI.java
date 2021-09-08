@@ -27,7 +27,7 @@ public class HoeStatsGUI implements Listener {
 	private CaneManager caneMan;
 	private TokenManager tokenMan;
 	
-	private static String title = "&c&lHarvester Hoe";
+	private static String title = "&c&lHoe Stats";
 	
 	public HoeStatsGUI(FatalHoes plugin, Player p) {
 		this.plugin = plugin;

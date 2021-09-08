@@ -161,7 +161,7 @@ public class GUIListener {
 			plugin.getTokenManager().subtractPlayerTokens(p, tokenCost);
 			p.sendMessage(Util.c("&cSuccessfully added " + type.getCustomName() + " at level " + (level + 1)));
 		} else {
-			p.sendMessage(Util.c("&cFailed to add " + type.getCustomName() + " at level " + (level + 1)));
+			p.sendMessage(Util.c("&cInsufficient tokens for " + type.getCustomName() + " at level " + (level + 1)));
 		}
 		
 	}
