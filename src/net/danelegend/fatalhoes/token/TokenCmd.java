@@ -123,7 +123,7 @@ public class TokenCmd implements CommandExecutor {
 			return true;
 		}
 		
-		if (length == 3 && args[0].equalsIgnoreCase("remove")) {
+		if (length == 3 && (args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("subtract"))) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				if (!player.hasPermission("eratools.admin")) {

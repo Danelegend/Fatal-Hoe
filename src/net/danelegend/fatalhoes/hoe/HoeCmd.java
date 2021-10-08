@@ -34,13 +34,30 @@ public class HoeCmd implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String string, String[] args) {
-		
 		// Command Syntax = /harvester give player  {Max}
 		
 		int length = args.length;
 		
 		if (length == 0) {
 			sender.sendMessage(Util.c("&cSyntax is /harvester give [player] [number] {max}"));
+			return false;
+		}
+		
+		// Check if the user does /harvester help
+		
+		if (length == 1) {
+			// Check if the user has admin perms
+			if (!(sender instanceof Player)) {
+				return false;
+			}
+			
+			if (sender.hasPermission("eratools.give")) {
+				this.adminHelp((Player) sender);
+			} else {
+			// Otherwise go display non-admin help
+				this.playerHelp((Player) sender);
+			}
+			
 			return false;
 		}
 		
@@ -96,6 +113,18 @@ public class HoeCmd implements CommandExecutor {
 		return true;
 	}
 
+	
+	private void playerHelp(Player p) {
+		for (String s : config.getStringList("help.player")) {
+			p.sendMessage(Util.c(s));
+		}
+	}
+	
+	private void adminHelp(Player p) {
+		for (String s : config.getStringList("help.admin")) {
+			p.sendMessage(Util.c(s));
+		}
+	}
 	
 	
 }

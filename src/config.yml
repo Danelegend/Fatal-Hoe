@@ -60,3 +60,21 @@ harvester-hoe:
    Max-Level: 100
    Price-Multiplier: 0.01
    
+
+# Configurable display for the help menu. Particularly useful if you have a certain color scheme
+help:
+  admin:
+  - '&8<------ &c&lFatality Hoes &8----->'
+  - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
+  - '&7● /cane top - Displays the top 7 players who have mined the most cane'
+  - '&7● /tokens - Displays how many tokens you have'
+  - '&7● /cane - Displays how much cane you have mined'
+  - '&7● /harvester give {player} {amount} [max] - Gives the amount of harvester hoes to the player. If the max flag is chosen, the hoe will be maxed out on enchants'
+  - '&7● /tokens give {player} {amount} - Gives the player the amount of tokens'
+  - '&7● /tokens subtract {player} {amount} - Removes the amount from the players tokens'
+  - '&7● /tokens set {player} {amount} - Sets the players tokens to amount'
+  player:
+  - '&8<------ &c&lFatality Hoes &8----->'
+  - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
+  - '&7● /cane top - Displays the top 7 players who have mined the most cane'
+  - '&7● /tokens - Displays how many tokens you have'
