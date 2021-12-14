@@ -39,12 +39,11 @@ public class GUIListener implements Listener {
 		}
 		
 		if (title.equals(Util.c(plugin.getConfig().getString("harvester-hoe.cane-top-gui.title")))) {
-			
-			
+			e.setCancelled(true);
+
 			return;
 		}
-		
-		
+
 		return;
 	}
 	
