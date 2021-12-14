@@ -78,3 +78,25 @@ help:
   - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
   - '&7● /cane top - Displays the top 7 players who have mined the most cane'
   - '&7● /tokens - Displays how many tokens you have'
+
+# Configurable captcha settings
+captcha:
+  # After how many cane mined should a captcha appear
+  occurence: 2
+
+  # Do you want the captcha to be active
+  enabled: True
+
+  # The number of fails a player can do before a countermeasure is issued
+  max-fails: 3
+
+  # The amount of times in seconds a player should be banned if they fail the captcha too many times. 0 for kick.
+  temp-ban: 0
+
+  # The message you want sent to the player on kick
+  kick-msg: "You have failed the captcha too many times!"
+
+  # The message you want sent to the player on ban
+  ban-msg: "You have failed the captcha too many times!"
+
+

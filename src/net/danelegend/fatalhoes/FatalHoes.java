@@ -3,6 +3,7 @@ package net.danelegend.fatalhoes;
 import java.io.File;
 import java.util.logging.Logger;
 
+import net.danelegend.fatalhoes.captcha.CaptchaManager;
 import net.danelegend.fatalhoes.guis.GUIListener;
 import net.danelegend.fatalhoes.token.TokenCmd;
 import org.bukkit.Bukkit;
@@ -22,9 +23,10 @@ public class FatalHoes extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private Economy econ = null;
 	
-	private TokenManager tokMan;
-	private CaneManager  canMan;
-	private HoeManager	 hoeMan;
+	private TokenManager   tokMan;
+	private CaneManager    canMan;
+	private HoeManager	   hoeMan;
+	private CaptchaManager capMan;
 	
 	private boolean factionsEnabled;
 	private boolean skyblockEnabled;
@@ -56,6 +58,7 @@ public class FatalHoes extends JavaPlugin {
 		tokMan = new TokenManager(this);
 		canMan = new CaneManager(this);
 		hoeMan = new HoeManager(this);
+		capMan = new CaptchaManager(this);
 		
 		Bukkit.getPluginManager().registerEvents(tokMan, this);
 		Bukkit.getPluginManager().registerEvents(canMan, this);
@@ -139,6 +142,10 @@ public class FatalHoes extends JavaPlugin {
 	
 	public TokenManager getTokenManager() {
 		return tokMan;
+	}
+
+	public CaptchaManager getCapatchaManager() {
+		return capMan;
 	}
 	
 }

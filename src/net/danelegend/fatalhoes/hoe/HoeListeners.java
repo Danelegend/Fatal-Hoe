@@ -2,6 +2,7 @@ package net.danelegend.fatalhoes.hoe;
 
 import java.util.Random;
 
+import net.danelegend.fatalhoes.captcha.CaptchaGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -34,6 +35,10 @@ public class HoeListeners implements Listener {
 	
 	@EventHandler
 	public void onCaneMine(BlockBreakEvent e) {
+		if (!e.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
+			return;
+		}
+
 		Player p = e.getPlayer();
 		ItemStack is = p.getItemInHand();
 		ItemMeta im = is.getItemMeta();
@@ -41,18 +46,14 @@ public class HoeListeners implements Listener {
 		CaneManager caneMan = plugin.getCaneManager();
 		TokenManager tokenMan = plugin.getTokenManager();
 
+		this.captchaLogic(p);
+
 		if (!is.getType().equals(Material.DIAMOND_HOE) || !im.getDisplayName().equals(Util.c(
 				plugin.getConfig().getString("harvester-hoe.name")))) {
+
+			caneMan.addPlayerRawCane(p, 1);
+			caneMan.addPlayerTotalCane(p, 1);
 			
-			if (e.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
-				caneMan.addPlayerRawCane(p, 1);
-				caneMan.addPlayerTotalCane(p, 1);
-			}
-			
-			return;
-		}
-		
-		if (!e.getBlock().getType().equals(Material.SUGAR_CANE_BLOCK)) {
 			return;
 		}
 
@@ -110,11 +111,21 @@ public class HoeListeners implements Listener {
 			tokenMan.addPlayerTokens(p, this.tokensToAdd(plugin.getHoeManager().getEnchantManager().getEnchantLevel(is, HoeEnchantTypes.TOKENBOOSTER)));
 			caneMan.addPlayerRawCane(p, 1);
 		}
-		
-		
-		
 	}
-	
+
+	private void captchaLogic(Player p) {
+		if (!plugin.getConfig().getBoolean("captcha.enabled")) {
+			return;
+		}
+
+		Random random = new Random();
+		int upperBound = plugin.getConfig().getInt("captcha.occurence");
+
+		if (random.nextInt(upperBound + 1) == upperBound) {
+			new CaptchaGUI(plugin, p);
+		}
+	}
+
 	private void shockwaveLogic(Block b, Player p, boolean autosellActive) {
 		char direction = this.playerDirection(p);
 		
