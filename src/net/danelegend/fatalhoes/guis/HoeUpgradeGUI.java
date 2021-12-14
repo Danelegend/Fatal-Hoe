@@ -24,7 +24,7 @@ public class HoeUpgradeGUI {
 	private FatalHoes plugin;
 	private HoeEnchantManager em;
 	
-	private static String title = "&c&l Harvester Hoe &8&l» &c&lUpgrades";
+	private static String title = "&c&lHoe &8&l» &c&lUpgrades";
 	
 	public HoeUpgradeGUI(FatalHoes plugin, ItemStack hoe) {
 		this.plugin = plugin;

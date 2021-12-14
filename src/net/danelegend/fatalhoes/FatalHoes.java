@@ -3,6 +3,8 @@ package net.danelegend.fatalhoes;
 import java.io.File;
 import java.util.logging.Logger;
 
+import net.danelegend.fatalhoes.guis.GUIListener;
+import net.danelegend.fatalhoes.token.TokenCmd;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -57,23 +59,28 @@ public class FatalHoes extends JavaPlugin {
 		
 		Bukkit.getPluginManager().registerEvents(tokMan, this);
 		Bukkit.getPluginManager().registerEvents(canMan, this);
+
+		Bukkit.getPluginManager().registerEvents(new GUIListener(this), this);
 		
 		Bukkit.getPluginCommand("fatal").setExecutor(new FatalCmd(this));
-		
 	}
-	
+
 	@Override
 	public void onDisable() {
 		System.out.println("[FatalHoes]: Disabling EraTools!");
-		
-		saveDataFile();
-		
+
+		try {
+			saveDataFile();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+
 		System.out.println("[FatalHoes]: FatalHoes is disabled!");
 	}
 	
 	public void saveDataFile() {
 		System.out.println("[FatalHoes]: Saving Data");
-		
+
 		data.setRawCane(canMan.getRawCaneData());
 		data.setTotalCane(canMan.getTotalCaneData());
 		

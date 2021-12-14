@@ -19,9 +19,13 @@ public class TokenManager implements Listener{
 	
 	public TokenManager(FatalHoes plugin) {
 		this.plugin = plugin;
-		
+
+		tokens = loadTokenData();
+		totalTokens = loadTotalTokenData();
+
+		plugin.getCommand("token").setExecutor(new TokenCmd(plugin, this));
 	}
-	
+
 	@EventHandler
 	public void onNewPlayerJoin(PlayerJoinEvent e) {
 		UUID playerUUID = e.getPlayer().getUniqueId();
@@ -105,7 +109,7 @@ public class TokenManager implements Listener{
 		UUID playerUUID = p.getUniqueId();
 		totalTokens.put(playerUUID, 0);
 	}
-	
+
 	private HashMap<UUID, Integer> loadTokenData() {
 		return plugin.getDataFile().getTokens();
 	}

@@ -19,9 +19,11 @@ import net.danelegend.fatalhoes.util.Util;
 public class TokenCmd implements CommandExecutor {
 
 	private FatalHoes plugin;
+	private TokenManager tokMan;
 	
-	public TokenCmd(FatalHoes plugin) {
+	public TokenCmd(FatalHoes plugin, TokenManager tokMan) {
 		this.plugin = plugin;
+		this.tokMan = tokMan;
 	}
 	
 	@Override
@@ -37,7 +39,7 @@ public class TokenCmd implements CommandExecutor {
 			Player p = (Player) sender;
 			UUID playerUUID = p.getUniqueId();
 			
-			HashMap<UUID, Integer> tokens = plugin.getTokenManager().getTokenData();
+			HashMap<UUID, Integer> tokens = tokMan.getTokenData();
 			int playerTokens = tokens.get(playerUUID);
 			
 			String prefix = "&6&lTokens&f: ";
@@ -53,13 +55,11 @@ public class TokenCmd implements CommandExecutor {
 			List<Player> topFive = new ArrayList<Player>();
 			
 			// Note: Dont add player if no such player exists
-			 
-			
 			for (int i = 5; i > 0; i--) {
 				int caneTop = -1;
 				Player biggest = null;
 				
-				for (Map.Entry<UUID, Integer> token : plugin.getTokenManager().getTokenData().entrySet()) {
+				for (Map.Entry<UUID, Integer> token : tokMan.getTokenData().entrySet()) {
 					if (token.getValue() >= caneTop) {
 						if (!topFive.contains(Bukkit.getPlayer(token.getKey()))) {
 							biggest = Bukkit.getPlayer(token.getKey());
@@ -67,17 +67,17 @@ public class TokenCmd implements CommandExecutor {
 						} 
 					}
 				}
-				
+
 				topFive.add(biggest);
-				
+
 			}
-			
+
 			// Send player message.
 			p.sendMessage(Util.c("    &cToken Top Placements"));
-			
+
 			for (int i = 0; i < 5; i++) {
 				if (topFive.get(i) != null) {
-					p.sendMessage(ChatColor.WHITE + "#" + (i+1) + " " + topFive.get(i).getDisplayName() + " - " + plugin.getTokenManager().getPlayerTokens(topFive.get(i)) + " tokens");
+					p.sendMessage(ChatColor.WHITE + "#" + (i+1) + " " + topFive.get(i).getDisplayName() + " - " + tokMan.getPlayerTokens(topFive.get(i)) + " tokens");
 				}
 			}
 			
@@ -95,8 +95,7 @@ public class TokenCmd implements CommandExecutor {
 					return false;
 				}
 			}
-			
-			TokenManager tokMan = plugin.getTokenManager();
+
 			UUID uuid = Bukkit.getPlayer(args[1]).getUniqueId();
 			
 			if (!tokMan.getTotalTokenData().containsKey(uuid)) {				
@@ -130,8 +129,7 @@ public class TokenCmd implements CommandExecutor {
 					return false;
 				}
 			}
-			
-			TokenManager tokMan = plugin.getTokenManager();
+
 			UUID uuid = Bukkit.getPlayer(args[1]).getUniqueId();
 			
 			if (!tokMan.getTotalTokenData().containsKey(uuid)) {				
@@ -165,8 +163,7 @@ public class TokenCmd implements CommandExecutor {
 					return false;
 				}
 			}
-			
-			TokenManager tokMan = plugin.getTokenManager();
+
 			UUID uuid = Bukkit.getPlayer(args[1]).getUniqueId();
 			
 			if (!tokMan.getTotalTokenData().containsKey(uuid)) {				
@@ -203,7 +200,7 @@ public class TokenCmd implements CommandExecutor {
 		}
 		
 		try {
-			int d = Integer.parseInt(strnum);
+			Integer.parseInt(strnum);
 		} catch (NumberFormatException nfe) {
 			return false;
 		}

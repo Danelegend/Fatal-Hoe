@@ -2,6 +2,7 @@ package net.danelegend.fatalhoes.guis;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -11,7 +12,7 @@ import net.danelegend.fatalhoes.hoe.enchants.HoeEnchantManager;
 import net.danelegend.fatalhoes.hoe.enchants.HoeEnchantTypes;
 import net.danelegend.fatalhoes.util.Util;
 
-public class GUIListener {
+public class GUIListener implements Listener {
 
 	private FatalHoes plugin;
 	private HoeEnchantManager em;

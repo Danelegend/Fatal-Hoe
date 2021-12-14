@@ -13,3 +13,5 @@ commands:
     description: Displays tokens of the player
   fatal:
     description: Used as an admin command
+  token:
+    description: Admin command to give, set or remove a users tokens.

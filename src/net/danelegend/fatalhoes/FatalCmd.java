@@ -19,6 +19,10 @@ public class FatalCmd implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if (args.length == 0) {
+			return false;
+		}
+
 		if (!args[0].equalsIgnoreCase("reload")) {
 			return false;
 		}

@@ -1,11 +1,11 @@
 package net.danelegend.fatalhoes.util;
 
+import org.bukkit.ChatColor;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import net.md_5.bungee.api.ChatColor;
 
 public class Util {
 
