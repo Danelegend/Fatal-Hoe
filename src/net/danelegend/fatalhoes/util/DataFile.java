@@ -26,8 +26,6 @@ public class DataFile {
 	public DataFile(FatalHoes plugin) {
 		this.plugin = plugin;
 		
-		file = new File(plugin.getDataFolder(), "data.base");
-		
 		// Form: UUID / rawCane / totalCane / tokens / totalTokens
 		
 		rawCane = new HashMap<UUID, Integer>();
@@ -36,6 +34,8 @@ public class DataFile {
 		totalTokens = new HashMap<UUID, Integer>();
 		
 		try {
+			file = new File(plugin.getDataFolder(), "data.base");
+
 			Scanner reader = new Scanner(file);
 			
 			while (reader.hasNextLine()) {
@@ -54,7 +54,7 @@ public class DataFile {
 				totalTokens.put(uuid, totTok);
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return;
 		}
 	}
 	

@@ -3,6 +3,7 @@ package net.danelegend.fatalhoes.guis;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.danelegend.fatalhoes.util.MenuConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,13 +25,13 @@ public class HoeUpgradeGUI {
 	private FatalHoes plugin;
 	private HoeEnchantManager em;
 	
-	private static String title = "&c&lHoe &8&l» &c&lUpgrades";
+	private static String title = MenuConfig.get().getString("Upgrade-Menu.title");
 	
 	public HoeUpgradeGUI(FatalHoes plugin, ItemStack hoe) {
 		this.plugin = plugin;
 		em = plugin.getHoeManager().getEnchantManager();
 		
-		inv = Bukkit.createInventory(null, 18, Util.c(title));
+		inv = Bukkit.createInventory(null, MenuConfig.get().getInt("Upgrade-Menu.inventory-size"), Util.c(title));
 		
 		ItemStack filler = this.createFiller();
 		
@@ -64,13 +65,15 @@ public class HoeUpgradeGUI {
 	}
 	
 	private ItemStack createFiller() {
-		ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE);
+		ItemStack is = new ItemStack(Material.getMaterial(MenuConfig.get().getString("Upgrade-Menu.filler-item.item")));
 		ItemMeta im = is.getItemMeta();
 		
 		im.setDisplayName(" ");
-		
-		im.addEnchant(Enchantment.DURABILITY, 1, true);
-		im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+		if (MenuConfig.get().getBoolean("Upgrade-Menu.filler-item.glowing")) {
+			im.addEnchant(Enchantment.DURABILITY, 1, true);
+			im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
 		
 		im.setLore(null);
 		
@@ -80,9 +83,14 @@ public class HoeUpgradeGUI {
 	}
 	
 	private ItemStack createEnchant(HoeEnchantTypes type, ItemStack hoe) {
-		ItemStack is = new ItemStack(Material.ENCHANTED_BOOK);
+		ItemStack is = new ItemStack(Material.getMaterial(MenuConfig.get().getString("Upgrade-Menu.upgrade-item.item")));
 		ItemMeta im = is.getItemMeta();
-		
+
+		if (MenuConfig.get().getBoolean("Upgrade-Menu.upgrade-item.glowing")) {
+			im.addEnchant(Enchantment.DURABILITY, 1, true);
+			im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+
 		int progress = em.getEnchantLevel(hoe, type);
 		int bar = 30;
 		

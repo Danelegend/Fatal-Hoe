@@ -51,7 +51,7 @@ public class HoeCmd implements CommandExecutor {
 				return false;
 			}
 			
-			if (sender.hasPermission("eratools.give")) {
+			if (sender.hasPermission("fatalhoes.give")) {
 				this.adminHelp((Player) sender);
 			} else {
 			// Otherwise go display non-admin help
@@ -61,7 +61,7 @@ public class HoeCmd implements CommandExecutor {
 			return false;
 		}
 		
-		if (!sender.hasPermission("eratools.give")) {
+		if (!sender.hasPermission("fatalhoes.give")) {
 			return false;
 		}
 		
@@ -74,7 +74,9 @@ public class HoeCmd implements CommandExecutor {
 				im.addEnchant(Enchantment.DIG_SPEED, 5, true);
 				im.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 			}
-			
+
+			System.out.println(config.getString("harvester-hoe.name"));
+
 			im.setDisplayName(Util.c(config.getString("harvester-hoe.name")));
 			
 			List<String> isl = new ArrayList<String>();

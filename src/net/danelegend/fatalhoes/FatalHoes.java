@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import net.danelegend.fatalhoes.captcha.CaptchaManager;
 import net.danelegend.fatalhoes.guis.GUIListener;
+import net.danelegend.fatalhoes.util.MenuConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,7 +45,9 @@ public class FatalHoes extends JavaPlugin {
 		if (!new File(this.getDataFolder() + "config.yml").exists()) {
 			saveDefaultConfig();
 		}
-		
+
+		MenuConfig.setup();
+
 		if (!setupEconomy()) {
 			log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
 			getServer().getPluginManager().disablePlugin(this);
@@ -59,7 +62,7 @@ public class FatalHoes extends JavaPlugin {
 		setCanePrice();
 		
 		data = new DataFile(this);
-		
+
 		tokMan = new TokenManager(this);
 		canMan = new CaneManager(this);
 		hoeMan = new HoeManager(this);
