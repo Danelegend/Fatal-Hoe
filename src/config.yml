@@ -8,16 +8,15 @@ harvester-hoe:
   - '&fSugarcane. Use &c/upgrade &fwhile holding to enchant'
   glow: true
   spawner-drops:
+   # Spawner Drops requires silk spawners
    enabled: true
   key-drops:
    enabled: true
-   # Use {player} as a placeholder for the player name
-   # Type in the command to give the player a crate here 
-   key-command: 'give {player} crate'
   cane-top-gui:
    title: '&cCane Top Placements'
   # Configurability for Enchants  
   Autosell:
+   # Levels beyond 1 have no physical effect for this enchant
    Base-Token-Cost: 50000 # Price for level 1
    Max-Level: 1 # Max level for this enchant
    Price-Multiplier: 0.01
@@ -31,7 +30,11 @@ harvester-hoe:
    Base-Token-Cost: 10000
    Max-Level: 100
    Price-Multiplier: 0.01
+
+   # How much more each cane is worth
+   Sell-Boost-Multiple: 0.1 # Sells for 10% more at Level 1
   Shockwave:
+   # Levels beyond 1 have no physical effect for this enchant
    Base-Token-Cost: 50000
    Max-Level: 1
    Price-Multiplier: 0
@@ -39,22 +42,51 @@ harvester-hoe:
    Base-Token-Cost: 10000
    Max-Level: 100
    Price-Multiplier: 0.01
+
+     # How many levels before an extra cane is guarenteed.
+     # ie. At Levels-Per-Token: 10
+     #     Level 0 = 1 Token
+     #     Level 1 = 1 Token w/ Chance of 2
+     #     Level 9 = 1 Token w/ Higher chance of 2
+     #     Level 10 = 2 Token
+     Levels-Per-Cane: 10
   TokenBooster:
    Base-Token-Cost: 10000
    Max-Level: 100
    Price-Multiplier: 0.01
+
+   # How many levels before an extra token is guarenteed.
+   # ie. At Levels-Per-Token: 10
+   #     Level 0 = 1 Token
+   #     Level 1 = 1 Token w/ Chance of 2
+   #     Level 9 = 1 Token w/ Higher chance of 2
+   #     Level 10 = 2 Token
+   Levels-Per-Token: 10
   SpawnerLooting:
    Base-Token-Cost: 10000
    Max-Level: 100
    Price-Multiplier: 0.01
-   # Probability of looting spawner
-   # Chance Calculated by enchantLevel/Probability
-   Probability: 10000
+
+   # The max chance to get a spawner if a hoe has max level key drops
+   max-chance: 0.25
+
+   # The spawners that this enchant should deliver
+   # Name as you would when using silkspawners
+   spawners:
+     - 'CREEPER'
+     - 'ENDERMEN'
+     - 'ZOMBIE'
   KeyLooting:
    Base-Token-Cost: 10000
    Max-Level: 100
    Price-Multiplier: 0.01
-   Probability: 10000
+   # Use {player} as a placeholder for the player name
+   # Type in the command to give the player a crate here
+   key-command: 'give {player} crate'
+
+   # The max chance to get a key if a hoe has max level key drops
+   max-chance: 0.25
+
   Haste:
    Base-Token-Cost: 10000
    Max-Level: 100

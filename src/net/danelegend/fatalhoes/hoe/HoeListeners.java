@@ -1,5 +1,7 @@
 package net.danelegend.fatalhoes.hoe;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import net.danelegend.fatalhoes.captcha.CaptchaGUI;
@@ -102,8 +104,6 @@ public class HoeListeners implements Listener {
 			this.shockwaveLogic(b, p, autosellActive);
 		}
 		
-		
-		
 		if (checker) {
 			this.keyDropLogic(plugin.getHoeManager().getEnchantManager().getEnchantLevel(is, HoeEnchantTypes.KEYLOOTING), p);
 			this.spawnerDropLogic(plugin.getHoeManager().getEnchantManager().getEnchantLevel(is, HoeEnchantTypes.SPAWNERLOOTING), p);
@@ -199,20 +199,18 @@ public class HoeListeners implements Listener {
 	}
 	
 	private int tokensToAdd(int tokenEnchantLevel) {
+		int levelsPerToken = plugin.getConfig().getInt("harvester-hoe.TokenBooster.Levels-Per-Token");
+
+		int tokenNum = Math.floorDiv(tokenEnchantLevel, levelsPerToken);
+		int range = tokenEnchantLevel % levelsPerToken;
+
 		Random rand = new Random();
-		
-		if (tokenEnchantLevel == 0) {
-			return 1;
+
+		if (rand.nextInt(levelsPerToken) < range) {
+			tokenNum++;
 		}
-		
-		int maxLevel = HoeEnchantTypes.TOKENBOOSTER.getMaxLevel();
-		
-		
-		
-		//TODO: Insert random token amount logic
-		
-		return rand.nextInt(5);
-		
+
+		return tokenNum;
 	}
 	
 	private int dropBoosterLogic(int dropEnchantLevel) {
@@ -220,9 +218,17 @@ public class HoeListeners implements Listener {
 			return 1;
 		} 
 		
-		//TODO: Insert random drop logic
-		int cane = 1;
-		
+		int levelsPerCane = plugin.getConfig().getInt("harvester-hoe.DropBooster.Levels-Per-Cane");
+
+		int cane = Math.floorDiv(dropEnchantLevel, levelsPerCane);
+		int range = dropEnchantLevel % levelsPerCane;
+
+		Random rand = new Random();
+
+		if (rand.nextInt(levelsPerCane) < range) {
+			cane++;
+		}
+
 		return cane;
 	}
 	
@@ -231,20 +237,30 @@ public class HoeListeners implements Listener {
 			return 1;
 		}
 		
-		return 1 + (sellBoosterLevel/100);		
+		return 1 + sellBoosterLevel * plugin.getConfig().getInt("harvester-hoe.AutosellBooster.Sell-Boost-Multiple");
 	}
 	
 	private void spawnerDropLogic(int spawnerDropLevel, Player p) {
 		if (spawnerDropLevel == 0) {
 			return;
 		}
+		int maxLevel = plugin.getConfig().getInt("harvester-hoe.SpawnerLooting.max-chance");
+
 		
 		Random rand = new Random();
-		int probability = plugin.getConfig().getInt("harvester-hoe.SpawnerLooting.Probability");
-		int randNum = rand.nextInt((int) probability/spawnerDropLevel);
-		
+		int probability = 1/plugin.getConfig().getInt("harvester-hoe.SpawnerLooting.max-chance");
+		int randNum = rand.nextInt((int) probability * maxLevel / spawnerDropLevel);
+
 		if (randNum == 1) {
-			
+			List<String> mobNames = plugin.getConfig().getStringList("harvester-hoe.SpawnerLooting.spawners");
+
+			int spawnerNum = rand.nextInt(mobNames.size());
+
+			String mobName = mobNames.get(spawnerNum);
+
+			String cmd = "ss give " + p.getName() + " " + mobName + " 1";
+
+			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
 		}
 	}
 	
@@ -254,12 +270,14 @@ public class HoeListeners implements Listener {
 		}
 		
 		Random rand = new Random();
-		int probability = plugin.getConfig().getInt("harvester-hoe.KeyLooting.Probability");
-		int randNum = rand.nextInt((int) probability/keyDropLevel);
+
+		int maxLevel = plugin.getConfig().getInt("harvester-hoe.KeyLooting.Max-Level");
+		int probability = 1/plugin.getConfig().getInt("harvester-hoe.KeyLooting.max-chance");
+		int randNum = rand.nextInt((int) probability * maxLevel / keyDropLevel);
 		
 		if (randNum == 1) {
-			String cmd = plugin.getConfig().getString("harvester-hoe.key-drops.key-command");
-			cmd = cmd.replaceAll("{player}", p.getName());
+			String cmd = plugin.getConfig().getString("harvester-hoe.KeyLooting.key-command");
+			cmd = cmd.replaceAll("\\{player}", p.getName());
 			Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
 		}
 		
@@ -314,7 +332,6 @@ public class HoeListeners implements Listener {
 		}
 		
 		return rand.nextInt(n);
-		
 	}
 	
 	private Block getAboveBlock(Block b) {
