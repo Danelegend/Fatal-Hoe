@@ -21,7 +21,7 @@ public enum HoeEnchantTypes {
 	private int guiPosition;
 	private String name;
 	
-	private HoeEnchantTypes(final String customName, final int maxLevel, final ChatColor colour, final int basePrice, 
+	HoeEnchantTypes(final String customName, final int maxLevel, final ChatColor colour, final int basePrice,
 			final double priceMultiplier, final int guiPos, final String name) {
 		this.customName = customName;
 		this.color = colour;
