@@ -3,118 +3,126 @@ harvester-hoe:
   cane-price: 50
   name: '&c&lHarvester Hoe'
   lore:
-  - ''
-  - '&fUse this magical hoe to automatically collect'
-  - '&fSugarcane. Use &c/upgrade &fwhile holding to enchant'
+    - ''
+    - '&fUse this magical hoe to automatically collect'
+    - '&fSugarcane. Use &c/upgrade &fwhile holding to enchant'
   glow: true
   spawner-drops:
-   # Spawner Drops requires silk spawners
-   enabled: true
+    # Spawner Drops requires silk spawners
+    enabled: true
   key-drops:
-   enabled: true
+    enabled: true
   cane-top-gui:
-   title: '&cCane Top Placements'
+    title: '&cCane Top Placements'
   # Configurability for Enchants  
   Autosell:
-   # Levels beyond 1 have no physical effect for this enchant
-   Base-Token-Cost: 50000 # Price for level 1
-   Max-Level: 1 # Max level for this enchant
-   Price-Multiplier: 0.01
-   # How much each increasing level should cost
-   # Cost Example
-   # Level 1 = basePrice * 1.00
-   # Level 2 = basePrice * 1.01
-   # Level 3 = basePrice * 1.02
-   # ...
+    # Levels beyond 1 have no physical effect for this enchant
+    Display-Name: "&a&lAutoSell"
+    Base-Token-Cost: 50000 # Price for level 1
+    Max-Level: 1 # Max level for this enchant
+    Price-Multiplier: 0.01
+    # How much each increasing level should cost
+    # Cost Example
+    # Level 1 = basePrice * 1.00
+    # Level 2 = basePrice * 1.01
+    # Level 3 = basePrice * 1.02
+    # ...
   AutosellBooster:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
+    Display-Name: "&a&lAuto Sell Booster"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
 
-   # How much more each cane is worth
-   Sell-Boost-Multiple: 0.1 # Sells for 10% more at Level 1
+    # How much more each cane is worth
+    Sell-Boost-Multiple: 0.1 # Sells for 10% more at Level 1
   Shockwave:
-   # Levels beyond 1 have no physical effect for this enchant
-   Base-Token-Cost: 50000
-   Max-Level: 1
-   Price-Multiplier: 0
+    # Levels beyond 1 have no physical effect for this enchant
+    Display-Name: "&c&lShockwave"
+    Base-Token-Cost: 50000
+    Max-Level: 1
+    Price-Multiplier: 0
   DropBooster:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
+    Display-Name: "&b&lDrop Booster"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
 
-     # How many levels before an extra cane is guarenteed.
-     # ie. At Levels-Per-Token: 10
-     #     Level 0 = 1 Token
-     #     Level 1 = 1 Token w/ Chance of 2
-     #     Level 9 = 1 Token w/ Higher chance of 2
-     #     Level 10 = 2 Token
-     Levels-Per-Cane: 10
+    # How many levels before an extra cane is guarenteed.
+    # ie. At Levels-Per-Token: 10
+    #     Level 0 = 1 Token
+    #     Level 1 = 1 Token w/ Chance of 2
+    #     Level 9 = 1 Token w/ Higher chance of 2
+    #     Level 10 = 2 Token
+    Levels-Per-Cane: 10
   TokenBooster:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
+    Display-Name: "&d&lToken Booster"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
 
-   # How many levels before an extra token is guarenteed.
-   # ie. At Levels-Per-Token: 10
-   #     Level 0 = 1 Token
-   #     Level 1 = 1 Token w/ Chance of 2
-   #     Level 9 = 1 Token w/ Higher chance of 2
-   #     Level 10 = 2 Token
-   Levels-Per-Token: 10
+    # How many levels before an extra token is guarenteed.
+    # ie. At Levels-Per-Token: 10
+    #     Level 0 = 1 Token
+    #     Level 1 = 1 Token w/ Chance of 2
+    #     Level 9 = 1 Token w/ Higher chance of 2
+    #     Level 10 = 2 Token
+    Levels-Per-Token: 10
   SpawnerLooting:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
+    Display-Name: "&7&lSpawner Looting"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
 
-   # The max chance to get a spawner if a hoe has max level key drops
-   max-chance: 0.25
+    # The max chance to get a spawner if a hoe has max level key drops
+    max-chance: 0.25
 
-   # The spawners that this enchant should deliver
-   # Name as you would when using silkspawners
-   spawners:
-     - 'CREEPER'
-     - 'ENDERMEN'
-     - 'ZOMBIE'
+    # The spawners that this enchant should deliver
+    # Name as you would when using silkspawners
+    spawners:
+      - 'CREEPER'
+      - 'ENDERMEN'
+      - 'ZOMBIE'
   KeyLooting:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
-   # Use {player} as a placeholder for the player name
-   # Type in the command to give the player a crate here
-   key-command: 'give {player} crate'
+    Display-Name: "&6&lKey Looting"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
+    # Use {player} as a placeholder for the player name
+    # Type in the command to give the player a crate here
+    key-command: 'give {player} crate'
 
-   # The max chance to get a key if a hoe has max level key drops
-   max-chance: 0.25
+    # The max chance to get a key if a hoe has max level key drops
+    max-chance: 0.25
 
   Haste:
-   Base-Token-Cost: 10000
-   Max-Level: 100
-   Price-Multiplier: 0.01
+    Display-Name: "&e&lHaste"
+    Base-Token-Cost: 10000
+    Max-Level: 100
+    Price-Multiplier: 0.01
    
 
 # Configurable display for the help menu. Particularly useful if you have a certain color scheme
 help:
   admin:
-  - '&8<------ &c&lFatality Hoes &8----->'
-  - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
-  - '&7● /cane top - Displays the top 7 players who have mined the most cane'
-  - '&7● /tokens - Displays how many tokens you have'
-  - '&7● /cane - Displays how much cane you have mined'
-  - '&7● /harvester give {player} {amount} [max] - Gives the amount of harvester hoes to the player. If the max flag is chosen, the hoe will be maxed out on enchants'
-  - '&7● /tokens give {player} {amount} - Gives the player the amount of tokens'
-  - '&7● /tokens subtract {player} {amount} - Removes the amount from the players tokens'
-  - '&7● /tokens set {player} {amount} - Sets the players tokens to amount'
+    - '&8<------ &c&lFatality Hoes &8----->'
+    - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
+    - '&7● /cane top - Displays the top 7 players who have mined the most cane'
+    - '&7● /tokens - Displays how many tokens you have'
+    - '&7● /cane - Displays how much cane you have mined'
+    - '&7● /harvester give {player} {amount} [max] - Gives the amount of harvester hoes to the player. If the max flag is chosen, the hoe will be maxed out on enchants'
+    - '&7● /tokens give {player} {amount} - Gives the player the amount of tokens'
+    - '&7● /tokens subtract {player} {amount} - Removes the amount from the players tokens'
+    - '&7● /tokens set {player} {amount} - Sets the players tokens to amount'
   player:
-  - '&8<------ &c&lFatality Hoes &8----->'
-  - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
-  - '&7● /cane top - Displays the top 7 players who have mined the most cane'
-  - '&7● /tokens - Displays how many tokens you have'
+    - '&8<------ &c&lFatality Hoes &8----->'
+    - '&7● /upgrade - Opens up the upgrade and stats menu for you and your harvester hoe'
+    - '&7● /cane top - Displays the top 7 players who have mined the most cane'
+    - '&7● /tokens - Displays how many tokens you have'
 
 # Configurable captcha settings
 captcha:
   # After how many cane mined should a captcha appear
-  occurence: 2
+  occurence: 500
 
   # Do you want the captcha to be active
   enabled: True

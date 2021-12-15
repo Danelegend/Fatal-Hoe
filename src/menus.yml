@@ -1,0 +1,30 @@
+Upgrade-Menu:
+  title: "&c&lHoe &8&l» &c&lUpgrades"
+  inventory-size: 18
+
+  upgrade-item:
+    item: ENCHANTED_BOOK
+    glowing: false
+
+  filler-item:
+    item: STAINED_GLASS_PANE
+    glowing: true
+
+  upgrades:
+    # Set slot to -1 if you do not wish for it to appear in the menu
+    autosell:
+      slot: 1
+    autosell-booster:
+      slot: 2
+    shockwave:
+      slot: 11
+    drop-booster:
+      slot: 6
+    token-booster:
+      slot: 15
+    spawner-looting:
+      slot: 3
+    key-looting:
+      slot: 5
+    haste:
+      slot: 7
