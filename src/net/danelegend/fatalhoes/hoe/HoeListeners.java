@@ -244,6 +244,11 @@ public class HoeListeners implements Listener {
 		if (spawnerDropLevel == 0) {
 			return;
 		}
+
+		if (!plugin.isSilkSpawnersEnabled()) {
+			return;
+		}
+
 		int maxLevel = plugin.getConfig().getInt("harvester-hoe.SpawnerLooting.max-chance");
 
 		

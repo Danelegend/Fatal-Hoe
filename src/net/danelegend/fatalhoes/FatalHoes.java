@@ -5,9 +5,7 @@ import java.util.logging.Logger;
 
 import net.danelegend.fatalhoes.captcha.CaptchaManager;
 import net.danelegend.fatalhoes.guis.GUIListener;
-import net.danelegend.fatalhoes.token.TokenCmd;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +28,8 @@ public class FatalHoes extends JavaPlugin {
 	
 	private boolean factionsEnabled;
 	private boolean skyblockEnabled;
+
+	private boolean silkSpawnersEnabled = true;
 	
 	private int canePrice;
 	
@@ -49,6 +49,11 @@ public class FatalHoes extends JavaPlugin {
 			log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
 			getServer().getPluginManager().disablePlugin(this);
 			return;
+		}
+
+		if (!checkSilkSpawners()) {
+			log.severe(String.format("[FatalHoes] SilkSpawners not found! Spawner drops will be disabled!"));
+			silkSpawnersEnabled = false;
 		}
 		
 		setCanePrice();
@@ -110,6 +115,14 @@ public class FatalHoes extends JavaPlugin {
 		
 		return (econ != null);
 	}
+
+	private boolean checkSilkSpawners() {
+		if (getServer().getPluginManager().getPlugin("SilkSpawners") == null) {
+			return false;
+		}
+
+		return true;
+	}
 	
 	public void setCanePrice() {
 		this.canePrice = 0;
@@ -147,5 +160,7 @@ public class FatalHoes extends JavaPlugin {
 	public CaptchaManager getCapatchaManager() {
 		return capMan;
 	}
+
+	public boolean isSilkSpawnersEnabled() { return this.silkSpawnersEnabled; }
 	
 }
